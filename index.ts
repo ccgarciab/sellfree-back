@@ -3,7 +3,7 @@ import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
 
-const port : number = config.get('port');
+const port = Number.parseInt(config.get('port'));
 const dbURI : string =  config.get('dbURI');
 
 const app = express();
