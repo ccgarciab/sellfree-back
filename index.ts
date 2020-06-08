@@ -3,6 +3,8 @@ import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
 
+import authRouter from './routes/auth';
+
 const port = Number.parseInt(config.get('port'));
 const dbURI : string =  config.get('dbURI');
 
@@ -22,6 +24,8 @@ let mongoOpts = {
 mongoose.connect(dbURI, mongoOpts)
     .then(() => console.log("Connected to DB"))
     .catch((err) => console.error(err));
+
+app.use('/', authRouter);
 
 app.listen(port, () => {
 
