@@ -6,16 +6,17 @@ import session from 'express-session';
 
 const authRouter = Router();
 
-function isString(obj : unknown) : obj is String{
+function validate(obj : unknown) : obj is String{
 
-    return typeof obj === 'string';
+    return typeof obj === 'string' && obj !== "";
 }
+
 
 authRouter.post('/register', async (req, res) => {
 
     const { username, email, password } = req.body;
 
-    if(!(isString(username) && isString(password) && isString(email))){
+    if(!(validate(username) && validate(password) && validate(email))){
 
         return res.status(400).json("Improper data format");
     }
@@ -49,9 +50,9 @@ authRouter.post('/register', async (req, res) => {
 
 authRouter.post('/login', async (req, res) => {
 
-    const { username, email, password } = req.body;
+    const { email, password } = req.body;
 
-    if(!(isString(username) && isString(password) && isString(email))){
+    if(!(validate(password) && validate(email))){
 
         return res.status(400).json("Improper data format");
     }
