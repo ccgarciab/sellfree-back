@@ -1,4 +1,5 @@
 {
     "dbURI" : "DB_URI",
-    "port"  : "$PORT"
+    "port"  : "$PORT",
+    "sessionSecret" : "SESSION"
 }
